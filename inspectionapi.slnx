@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+  </Folder>
   <Project Path="api/api.csproj" />
   <Project Path="BankApp.Data/BankApp.Data.csproj" Id="a3124399-776c-45e0-8572-d7657dd9f563" />
   <Project Path="BankApp.DTO/BankApp.DTO.csproj" Id="60e85643-99c9-4d68-bd1c-9b0ade38e7d6" />
