@@ -1,4 +1,5 @@
 ﻿using BankApp.Data.Models;
+using BankApp.Data.truck;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ namespace BankApp.Repos.Contrats
         IRepository<Card> Cards { get; }
         IRepository<AccountType> AccountTypes { get; }
         IRepository<CardType> CardTypes { get; }
+        IRepository<TruckAppointment> TruckAppointmentTypes { get; }
         Task<int> SaveAsync();
     }
 

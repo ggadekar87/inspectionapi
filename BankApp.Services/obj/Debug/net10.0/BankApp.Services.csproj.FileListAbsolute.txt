@@ -36,3 +36,4 @@ C:\workspace\api\api\BankApp.Services\obj\Debug\net10.0\BankApp.Services.dll
 C:\workspace\api\api\BankApp.Services\obj\Debug\net10.0\refint\BankApp.Services.dll
 C:\workspace\api\api\BankApp.Services\obj\Debug\net10.0\BankApp.Services.pdb
 C:\workspace\api\api\BankApp.Services\obj\Debug\net10.0\ref\BankApp.Services.dll
+C:\workspace\api\api\BankApp.Services\obj\Debug\net10.0\BankApp.Services.sourcelink.json

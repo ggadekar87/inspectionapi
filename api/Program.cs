@@ -5,6 +5,7 @@ using api.model;
 using api.Service;
 using BankApp.Data.Models;
 using BankApp.DTO;
+using BankApp.DTO.Validation;
 using BankApp.Repos;
 using BankApp.Repos.Contrats;
 using BankApp.Services;
@@ -42,6 +43,7 @@ builder.Services.AddScoped<IBankingService, BankingService>();
 
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddScoped<ITruckAppointmentService, TruckAppointmentService>();
+builder.Services.AddScoped<IInspectionService, InspectionService>();
 
 builder.Services.AddCors(options =>
 {
@@ -52,10 +54,12 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader();
     });
 });
-#region fluent region
+#region fluent Validation region
 builder.Services.AddFluentValidationAutoValidation();
 // Registers all validators in the assembly
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserRequestValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateAppointmentRequestValidator>();
+builder.Services.AddFluentValidationClientsideAdapters();
 #endregion
 
 builder.Services.Configure<MySettings>(builder.Configuration.GetSection("MySettings"));

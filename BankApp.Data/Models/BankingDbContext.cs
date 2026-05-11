@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BankApp.Data.truck;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
@@ -15,7 +16,7 @@ namespace BankApp.Data.Models
         public DbSet<CardType> CardTypes => Set<CardType>();
         public DbSet<BankAccount> BankAccounts => Set<BankAccount>();
         public DbSet<Card> Cards => Set<Card>();
-
+        public DbSet<TruckAppointment> TruckAppointment { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AccountType>().HasData(
@@ -28,6 +29,12 @@ namespace BankApp.Data.Models
                 new CardType { Id = 2, Name = "Gold" },
                 new CardType { Id = 3, Name = "Silver" }
             );
+
+
+            modelBuilder.Entity<TruckAppointment>()
+           .ToTable("TruckAppointment"); // map to actual SQL table
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 

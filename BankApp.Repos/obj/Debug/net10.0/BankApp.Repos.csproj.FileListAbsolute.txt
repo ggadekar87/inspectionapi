@@ -28,3 +28,4 @@ C:\workspace\api\api\BankApp.Repos\obj\Debug\net10.0\BankApp.Repos.dll
 C:\workspace\api\api\BankApp.Repos\obj\Debug\net10.0\refint\BankApp.Repos.dll
 C:\workspace\api\api\BankApp.Repos\obj\Debug\net10.0\BankApp.Repos.pdb
 C:\workspace\api\api\BankApp.Repos\obj\Debug\net10.0\ref\BankApp.Repos.dll
+C:\workspace\api\api\BankApp.Repos\obj\Debug\net10.0\BankApp.Repos.sourcelink.json
