@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="api/api.csproj" />
+  <Project Path="BankApp.Data/BankApp.Data.csproj" Id="a3124399-776c-45e0-8572-d7657dd9f563" />
+  <Project Path="BankApp.DTO/BankApp.DTO.csproj" Id="60e85643-99c9-4d68-bd1c-9b0ade38e7d6" />
+  <Project Path="BankApp.Repos/BankApp.Repos.csproj" Id="ee564806-6d79-45cd-b7aa-11e5168b484a" />
+  <Project Path="BankApp.Services/BankApp.Services.csproj" Id="a609fe7e-e052-4bc3-8474-acfab8ac1b14" />
+</Solution>
