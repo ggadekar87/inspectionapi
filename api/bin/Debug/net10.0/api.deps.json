@@ -796,6 +796,7 @@
       "BankApp.DTO/1.0.0": {
         "dependencies": {
           "BankApp.Data": "1.0.0",
+          "FluentValidation": "11.11.0",
           "Swashbuckle.AspNetCore": "10.1.7",
           "Swashbuckle.AspNetCore.Swagger": "10.1.7"
         },

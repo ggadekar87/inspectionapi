@@ -36,41 +36,65 @@
         }
       }
     },
-    "/api/Bank": {
-      "post": {
-        "tags": [
-          "Bank"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateAccountWithCarRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateAccountWithCarRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateAccountWithCarRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Products": {
+    "/api/Inspection/fetch": {
       "get": {
         "tags": [
-          "Products"
+          "Inspection"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "truckNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "driverName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portOfEntry",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "purpose",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -155,17 +179,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateAppointmentRequest"
+                "$ref": "#/components/schemas/TruckAppointmentRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateAppointmentRequest"
+                "$ref": "#/components/schemas/TruckAppointmentRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateAppointmentRequest"
+                "$ref": "#/components/schemas/TruckAppointmentRequest"
               }
             }
           }
@@ -177,26 +201,26 @@
         }
       }
     },
-    "/api/Users": {
-      "post": {
+    "/api/TruckAppointment/update": {
+      "put": {
         "tags": [
-          "Users"
+          "TruckAppointment"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterUserRequest"
+                "$ref": "#/components/schemas/TruckAppointmentUpdateRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterUserRequest"
+                "$ref": "#/components/schemas/TruckAppointmentUpdateRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterUserRequest"
+                "$ref": "#/components/schemas/TruckAppointmentUpdateRequest"
               }
             }
           }
@@ -208,41 +232,79 @@
         }
       }
     },
-    "/api/WeatherForecast": {
-      "get": {
+    "/api/TruckAppointment/delete/{id}": {
+      "delete": {
         "tags": [
-          "WeatherForecast"
+          "TruckAppointment"
         ],
-        "operationId": "GetWeatherForecast",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
-                }
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TruckAppointment/{id}": {
+      "get": {
+        "tags": [
+          "TruckAppointment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TruckAppointment/update/status": {
+      "patch": {
+        "tags": [
+          "TruckAppointment"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAppointmentStatusRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAppointmentStatusRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAppointmentStatusRequest"
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -250,61 +312,28 @@
   },
   "components": {
     "schemas": {
-      "BankAccount": {
+      "LoginRequest": {
         "type": "object",
         "properties": {
-          "accountNumber": {
+          "username": {
             "type": "string",
             "nullable": true
           },
-          "balance": {
-            "type": "number",
-            "format": "double"
-          },
-          "accountTypeId": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Card": {
-        "type": "object",
-        "properties": {
-          "cardNumber": {
+          "password": {
             "type": "string",
             "nullable": true
-          },
-          "expiryDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "bankAccountId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "cardTypeId": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false
       },
-      "CreateAccountWithCarRequest": {
+      "TruckAppointmentRequest": {
         "type": "object",
         "properties": {
-          "bankAccount": {
-            "$ref": "#/components/schemas/BankAccount"
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           },
-          "card": {
-            "$ref": "#/components/schemas/Card"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CreateAppointmentRequest": {
-        "type": "object",
-        "properties": {
           "truckNumber": {
             "type": "string",
             "nullable": true
@@ -333,59 +362,53 @@
         },
         "additionalProperties": false
       },
-      "LoginRequest": {
+      "TruckAppointmentUpdateRequest": {
         "type": "object",
         "properties": {
-          "username": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "truckNumber": {
             "type": "string",
             "nullable": true
           },
-          "password": {
+          "driverName": {
+            "type": "string",
+            "nullable": true
+          },
+          "appointmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "purpose": {
+            "type": "string",
+            "nullable": true
+          },
+          "portOfEntry": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "comments": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "RegisterUserRequest": {
+      "UpdateAppointmentStatusRequest": {
         "type": "object",
         "properties": {
-          "fullName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
-          },
-          "age": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "WeatherForecast": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "temperatureC": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "temperatureF": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "summary": {
+          "status": {
             "type": "string",
             "nullable": true
           }
@@ -399,19 +422,10 @@
       "name": "Auth"
     },
     {
-      "name": "Bank"
-    },
-    {
-      "name": "Products"
+      "name": "Inspection"
     },
     {
       "name": "TruckAppointment"
-    },
-    {
-      "name": "Users"
-    },
-    {
-      "name": "WeatherForecast"
     }
   ]
 }

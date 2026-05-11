@@ -26,3 +26,4 @@ C:\workspace\api\api\BankApp.Data\obj\Debug\net10.0\refint\BankApp.Data.dll
 C:\workspace\api\api\BankApp.Data\obj\Debug\net10.0\BankApp.Data.pdb
 C:\workspace\api\api\BankApp.Data\obj\Debug\net10.0\BankApp.Data.genruntimeconfig.cache
 C:\workspace\api\api\BankApp.Data\obj\Debug\net10.0\ref\BankApp.Data.dll
+C:\workspace\api\api\BankApp.Data\obj\Debug\net10.0\BankApp.Data.sourcelink.json

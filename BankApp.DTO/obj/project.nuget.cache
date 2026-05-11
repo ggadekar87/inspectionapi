@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "1t7RN+MmAWk=",
+  "dgSpecHash": "vnWXS+3O1H4=",
   "success": true,
   "projectFilePath": "C:\\workspace\\api\\api\\BankApp.DTO\\BankApp.DTO.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sharvil\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\Sharvil\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
+    "C:\\Users\\Sharvil\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
     "C:\\Users\\Sharvil\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\8.0.0\\microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
     "C:\\Users\\Sharvil\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.4\\microsoft.bcl.cryptography.9.0.4.nupkg.sha512",
     "C:\\Users\\Sharvil\\.nuget\\packages\\microsoft.data.sqlclient\\6.1.1\\microsoft.data.sqlclient.6.1.1.nupkg.sha512",
