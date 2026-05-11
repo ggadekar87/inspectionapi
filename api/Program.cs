@@ -1,5 +1,4 @@
 using api.filter;
-using api.FluentValidation;
 using api.middleware;
 using api.model;
 using api.Service;
@@ -14,7 +13,6 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 // Ensure the Swashbuckle.AspNetCore package is referenced in your project.
 // The AddSwaggerGen extension method comes from the Swashbuckle.AspNetCore NuGet package.
@@ -44,7 +42,7 @@ builder.Services.AddScoped<IBankingService, BankingService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddScoped<ITruckAppointmentService, TruckAppointmentService>();
 builder.Services.AddScoped<IInspectionService, InspectionService>();
-
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -56,10 +54,12 @@ builder.Services.AddCors(options =>
 });
 #region fluent Validation region
 builder.Services.AddFluentValidationAutoValidation();
-// Registers all validators in the assembly
-builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserRequestValidator>();
-builder.Services.AddValidatorsFromAssemblyContaining<CreateAppointmentRequestValidator>();
 builder.Services.AddFluentValidationClientsideAdapters();
+
+// Registers all validators in the assembly
+builder.Services.AddValidatorsFromAssemblyContaining<CreateAppointmentRequestValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateAppointmentStatusValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<LoginRequestValidator>();
 #endregion
 
 builder.Services.Configure<MySettings>(builder.Configuration.GetSection("MySettings"));
@@ -127,7 +127,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();//Middelware
 app.UseAuthentication();//Middelware
 app.UseMiddleware<LoggingMiddleware>();//Custome logging middleware

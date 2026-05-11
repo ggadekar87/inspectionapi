@@ -1,4 +1,6 @@
 ﻿using api.model;
+using BankApp.DTO;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -13,38 +15,26 @@ namespace api.Controllers
     {
         private readonly IConfiguration _config;
 
-        public AuthController(IConfiguration config) => _config = config;
+        private readonly IAuthService _auth;
+
+        public AuthController(IAuthService auth, IConfiguration config)
+        {
+            _auth = auth;
+            _config = config;
+        }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginRequest request)
         {
-            // 1. Validate user (DB, Identity, etc.)
-            if (request.Username != "ganesh" || request.Password != "password")
-                return Unauthorized();
+            if (!ModelState.IsValid)
+                return ValidationProblem(ModelState);
 
-            var jwtSection = _config.GetSection("Jwt");
-            var key = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(jwtSection["Key"]!));
+            var result = await _auth.LoginAsync(request.Username, request.Password);
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            if (!result.Success)
+                return Unauthorized(new { message = result.ErrorMessage });
 
-            var claims = new[]
-            {
-            new Claim(JwtRegisteredClaimNames.Sub, request.Username),
-            new Claim(ClaimTypes.Name, request.Username),
-            new Claim(ClaimTypes.Role, "Admin")
-        };
-
-            var token = new JwtSecurityToken(
-                issuer: jwtSection["Issuer"],
-                audience: jwtSection["Audience"],
-                claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),
-                signingCredentials: creds);
-
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return Ok(new { token = tokenString });
+            return Ok(new { token = result.Token , success = result.Success });
         }
     }
 
