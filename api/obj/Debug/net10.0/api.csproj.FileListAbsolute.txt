@@ -310,5 +310,4 @@ C:\workspace\api\api\api\obj\Debug\net10.0\refint\api.dll
 C:\workspace\api\api\api\obj\Debug\net10.0\api.pdb
 C:\workspace\api\api\api\obj\Debug\net10.0\api.genruntimeconfig.cache
 C:\workspace\api\api\api\obj\Debug\net10.0\ref\api.dll
-C:\workspace\api\api\api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\workspace\api\api\api\obj\Debug\net10.0\api.sourcelink.json

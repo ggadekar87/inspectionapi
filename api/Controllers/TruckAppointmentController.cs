@@ -101,14 +101,21 @@ namespace api.Controllers
         [HttpPut("update")]
         public async Task<IActionResult> UpdateAppointment([FromBody] TruckAppointmentUpdateRequest payload)
         {
-            if(string.IsNullOrEmpty(payload.Id.ToString()))
-                return BadRequest("Please provide id");
+            if (payload == null)
+                return BadRequest("Request body cannot be empty.");
+
+            if (payload.Id <= 0)
+                return BadRequest("A valid appointment Id is required.");
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _truckAppointmentService.UpdateAppointment(payload);
-            return Ok(result);
+            var updated = await _truckAppointmentService.UpdateAppointment(payload);
+
+            if (updated == null)
+                return NotFound("Appointment not found or update failed.");
+
+            return Ok(updated);
         }
 
         [HttpDelete("delete/{id:int}")]
